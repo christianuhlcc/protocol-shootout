@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Serialization Protocols</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/solarized.css">
@@ -24,18 +24,102 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-                <section data-markdown data-separator="---">
-                    <script type="text/template">
-                        # Serialization Protocols in Scala
-                        a shootout
-                        ---
-                        ## Reasoning
-                        so why is this even important?
-                        ---
-                        ## Reasoning
-                        1. Distributed Systems are everywhere
-                    </script>
-				</section>
+
+
+<!-- horrible intendation for a reason, because I don't want to read everything nested to far. -->
+
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Serialization Protocols in Scala
+        a shootout
+
+        ---
+
+        ## Reasoning
+        so why is this even important?
+
+
+        --
+
+        ### System designs are changing
+
+        1. Microservice architectures are becoming mainstream
+        1. Queues (and distributed commit logs used as queues) show up in mainstream archtectures
+        1. CQRS / ES is a common design nowadays, especially with the rising popularity of DDD
+        1. We're not using databases as integration layer anymore. (I hope?!...)
+
+        --
+
+        > Distributed systems are about protocols, not implementations. Forget languages, protocols are everything.
+
+        [@TimPerret](https://twitter.com/timperrett/status/748590102926884864)
+
+
+        --
+
+        ## Evolvability
+
+        > The ability of a system and its data to adopt to change
+
+        --
+
+        ## Evolvability
+
+        In the world of monolythic systems and relational databases, a change in the data model was usually implemented by a schema migration (and code changes)
+
+        --
+
+		## Evolvability Examples
+
+        * monolithic systems and relational databases
+        * replicated systems 
+        * systems with code distributed to the user
+
+        --
+
+        ## Persistence
+
+        * on-disk formats behave significantly different than in-memory formats
+
+        * Data needs to be encoded/serialized/marshalled
+
+        * to get it back you need to decode/deserialize/unmarshall
+
+    </script>
+</section>
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Usual suspects
+
+        --
+
+        ## Programming Language provided serialization
+
+        we get `java.io.Serializable` for free, so why not just use it?
+
+        --
+
+        ## NoooooooooOOoo
+
+</section>
+
+<section data-markdown data-separator="---">
+    <script type="text/template">
+
+    </script>
+
+    <
+</section>
+<section data-markdown data-separator="---">
+    <script type="text/template">
+        ## Reasoning
+        1. Distributed Systems are everywhere
+    </script>
+</section>
+
+
+
+
 			</div>
 		</div>
 
