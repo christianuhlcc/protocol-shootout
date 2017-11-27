@@ -101,24 +101,77 @@
 
         ## NoooooooooOOoo
 
-</section>
+        * We are bound to one implementation languate 
+        * The performance is awful
+        * De-serializing whole classes is a security nightmare!
 
-<section data-markdown data-separator="---">
-    <script type="text/template">
+        --
+
+        ## Some notes about Performance
+
+        |protocol| create |ser|deser|total|size|
+        |--|--|--|--|--|--|
+        |protobuf|121|1173|719|1891|239|
+        |thrift|95|1455|731|2186|349|
+        |kryo-flat|55|705|909|1614|268|
+        |avro-generic|329|1721|984|2704|221|
+        |scala/java-built-in|514|8280|36105|44385|1293|
+
+        [Source](https://github.com/eishay/jvm-serializers/wiki)
+
+        --
+
+        ## Some notes about performance
+
+        * as long as its one of our four, it's probably fast enough
+        * if you need it faster, you'll have to do your own research
+        * just don't use the built in serializer
+
+        --
+
+        ## But... how about JSON? Or XML?
+
+        * still slow (depending on the benchmark)
+        * verbose
+        * number handling is difficult
+        * character encoding is difficult
 
     </script>
-
-    <
 </section>
-<section data-markdown data-separator="---">
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        ## Reasoning
-        1. Distributed Systems are everywhere
+        # Protobuf
+
     </script>
 </section>
 
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Avro
+    	
+    </script>
+</section>
 
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Thrift
+    	
+    </script>
+</section>
 
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Kryo
+    	
+    </script>
+</section>
+
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        # Summary
+    	
+    </script>
+</section>
 
 			</div>
 		</div>
