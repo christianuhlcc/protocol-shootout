@@ -89,17 +89,17 @@
 </section>
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Usual suspects
+        ## Usual suspects
 
         --
 
-        ## Programming Language provided serialization
+        ### Programming Language provided serialization
 
         we get `java.io.Serializable` for free, so why not just use it?
 
         --
 
-        ## NoooooooooOOoo
+        ### NoooooooooOOoo
 
         * We are bound to one implementation languate 
         * The performance is awful
@@ -107,7 +107,7 @@
 
         --
 
-        ## Some notes about Performance
+        ### Some notes about Performance
 
         |protocol| create |ser|deser|total|size|
         |--|--|--|--|--|--|
@@ -121,7 +121,7 @@
 
         --
 
-        ## Some notes about performance
+        ### Some notes about performance
 
         * as long as its one of our four, it's probably fast enough
         * if you need it faster, you'll have to do your own research
@@ -129,46 +129,77 @@
 
         --
 
-        ## But... how about JSON? Or XML?
+        ### But... how about JSON? Or XML?
 
+        * widespread
+        * somewhat human readable
         * still slow (depending on the benchmark)
         * verbose
         * number handling is difficult
         * character encoding is difficult
 
+        --
+
+        ### But... how about JSON? Or XML?
+
+        There also exists a various range of schema extensions for JSON.
+        Unfortunately they don't provide schema evolabiltiy, so i'll skip them
+
+
     </script>
 </section>
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Protobuf
+        ## Schema evolvability
+
+        --
+
+        ## Schema evolvability
+
+        * Backwards compatibility
+
+        That's halfway easy. You know how the previous schema was, you can deal with missing things in your code. You can also choose to ingnore old fields etc.
+
+        * Forwards compatibiltiy
+
+        Ouch. How do you deal with things you don't know about?
+
+        --
+
+        
+    </script>
+</section>
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        ## Protobuf
 
     </script>
 </section>
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Avro
+        ## Avro
     	
     </script>
 </section>
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Thrift
+        ## Thrift
     	
     </script>
 </section>
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Kryo
+        ## Kryo
     	
     </script>
 </section>
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Summary
+        ## Summary
     	
     </script>
 </section>
