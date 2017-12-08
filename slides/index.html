@@ -44,7 +44,7 @@
         ### System designs are changing
 
         1. Microservice architectures are becoming mainstream
-        1. Queues (and distributed commit logs used as queues) show up in mainstream archtectures
+        1. Queues (and distributed commit logs used as queues) show up in mainstream architectures
         1. CQRS / ES is a common design nowadays, especially with the rising popularity of DDD
         1. We're not using databases as integration layer anymore. (I hope?!...)
 
@@ -101,9 +101,19 @@
 
         ### NoooooooooOOoo
 
-        * We are bound to one implementation languate 
+        * We are bound to one implementation language 
         * The performance is awful
-        * De-serializing whole classes is a security nightmare!
+        * It has some serious drawbacks
+
+        --
+
+        > Implement `Serializable` judiciously
+        [Joshua Bloch, Effective Java]
+
+        * decreases the flexibilty to change the class once it is released
+        * The inner implementation of your class becomes the API
+        * increases the likelyhood of bugs and security holes (Stack Overflows)
+        * increases the testing burden
 
         --
 
@@ -154,17 +164,32 @@
 
         --
 
-        ## Schema evolvability
+        ### Reading Data between Schemas
 
-        * Backwards compatibility
+        <img src="/media/broken_deployments.svg"  height="300" width="700">
 
-        That's halfway easy. You know how the previous schema was, you can deal with missing things in your code. You can also choose to ingnore old fields etc.
 
-        * Forwards compatibiltiy
+        --
+
+        ### Backwards compatibility
+
+        This means a newer Schema can read Data encoded with an older Schema.
+
+        That's halfway (not) easy. You know how the previous schema was, you can deal with missing things in your code. If you are aware of that.
+
+        --
+
+        ### Forwards compatibiltiy
+
+        Reading Data from a Schema that is newer that the Schema of the running Software.
 
         Ouch. How do you deal with things you don't know about?
 
         --
+
+        ### Forwards compatibiltiy
+
+        Let a Protocol handle this for us!
 
         
     </script>
@@ -172,6 +197,71 @@
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
         ## Protobuf
+
+        --
+
+        What is Protbuf (protocol buffers)?
+
+        > Protocol buffers are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. 
+
+        Besides the specification, Google provides a compiler for Java
+
+        --
+
+        ## ScalaPB
+
+        ScalaPB is a protocol buffer compiler `(protoc)` plugin for Scala. It will generate Scala case classes, parsers and serializers for your protocol buffers
+
+        --
+
+        ## Schema Sample
+
+        ```
+        syntax = "proto3";
+
+        package de.christianuhl.proto;
+
+        message Person {
+            int32 user_id = 1;
+            string firstname = 2;
+            string lastname = 3;
+        }
+        ```
+
+        --
+
+        ### Usage with SBT
+
+        (live Sample)
+
+        --
+
+        ### Let's check the encoding on Disk
+
+        |field tag| type |value |length |bytes / value |
+        |--|--|--|--|--|--|
+        |00010|010|12|09|43687269 73746961 6E|
+        |00011|010|1A|03|0355686C|
+
+        --
+
+        ### Proto 2 vs Proto 3
+
+        Significant changes:
+
+        * No presence logic anymore
+        * All values are optional by default, `required` semantic is removed
+        * `Map` Type
+        * Timevalues
+
+        --
+
+        ### Why the radical 'everything is optional'?   
+
+        * `required` breaks schema evolvabiltiy anywas
+        * loads of production issues
+        * was already banned in google anyways
+        * `optional` became rendundant and was removed as well
 
     </script>
 </section>
