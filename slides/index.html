@@ -353,7 +353,19 @@
         1. You include it in the Payload (as in the Sample)
         1. You versionize it, store it yourself and join it later (typical Database Application)
         1. Roll your Schema Registry and do Avro RPC
-        
+
+        --
+
+        ### What benefits to we get from that?
+
+        1. Support for dynamically generated schemas (protobuf and thrift want to be hand-crafted)
+        1. Simpler interoperabilty with dynamically typed languages
+
+        ### And the downsides
+
+        1. Protocol Overhead or Runtime Dependency, pick a poison
+        1. Need to verify schema changes are compatible
+
     </script>
 </section>
 
