@@ -9,7 +9,7 @@ val shared = Seq(
 )
 
 lazy val protocolRoot = (project in file("."))
-  .aggregate(protobuf, avro)
+  .aggregate(protobuf, avro, thrift)
   .settings(
     shared,
     name := "protocol-shootout"
@@ -32,6 +32,23 @@ lazy val avro = (project in file("avro"))
   avroSourceDirectory := file("avro/src/main/avro"),
   sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
   libraryDependencies += "com.sksamuel.avro4s" %% "avro4s-core" % "1.8.0"
+)
+
+lazy val kryo = (project in file("kryo"))
+    .settings(
+      shared,
+      libraryDependencies += "com.twitter" %% "chill" % "0.9.2"
+    )
+
+lazy val thrift = (project in file("thrift"))
+.settings(
+  shared,
+  libraryDependencies ++= Seq(
+    "org.apache.thrift" % "libthrift" % "0.9.2",
+    "com.twitter" %% "scrooge-core" % "17.11.0" exclude("com.twitter", "libthrift"),
+    "com.twitter" %% "finagle-thrift" % "17.11.0" exclude("com.twitter", "libthrift")
+  ),
+  scroogeThriftSourceFolder := file("thrift/src/main/thrift")
 )
 
 def scalaXml = Def.setting {

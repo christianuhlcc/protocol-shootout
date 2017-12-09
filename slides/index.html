@@ -269,7 +269,70 @@
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
         ## Thrift
-    	
+
+        --
+
+        ### What is Thrift?
+
+        > ... is an interface definition language and binary communication protocol that is used to define and create services for numerous languages. It is used as a remote procedure call (RPC) framework 
+
+        [wikipedia](https://en.wikipedia.org/wiki/Apache_Thrift)
+
+        --
+
+        ### What is Thrift?
+
+        * it has large conceptual similarities to protobuf
+        * originally developed at facebook
+        * re-open-sourced later as fbthrift
+
+        --
+
+        ## Scala & SBT Integration
+
+        Twitter supplies scrooge
+
+        [Scrooge](https://github.com/twitter/scrooge)
+
+        --
+
+        ## Schema Sample
+
+        ```
+        struct Person {
+            1: optional i64     userId,
+            2: required string  firstname,
+            3: required string  lastname
+        }
+        ```
+
+        --
+
+        ### Usage with SBT
+
+        (live Sample)
+
+        --
+
+         ### Let's check the encoding on Disk
+
+        |Type| Field Tag |Lenth |bytes | value |
+        |--|--|--|--|--|
+        |0B|0002|00000009|43687269 73746961 6E|Christian|
+        |0B|0003|00000003|55686C|Uhl|
+
+        --
+
+        ### What makes Thrift special?
+
+        * It's more than just serialization, it's a whole RPC framework
+
+        * It embraces a whole family of Encodings (They call it protocols)
+
+        * scala ecosystem only gets contributions by twitter
+
+        * otherwise, it's remarkably similar to protobuf
+
     </script>
 </section>
 
@@ -372,6 +435,54 @@
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
         ## Kryo
+
+        --
+
+        ### The 'odd' one of our little list
+
+        * Object Graph serialization Framework for the JVM
+
+        * No Schema evolution
+
+        * Blazing fast JVM-to-JVM communication
+
+        * good candidate for live cluster communication (akka e.g.) 
+
+        [Source](https://github.com/EsotericSoftware/kryo)
+
+        --
+
+        ### Usage with SBT
+
+        using twitter chill
+
+        * [chill](https://github.com/twitter/chill)
+
+        (live Sample)
+
+        --
+
+        ### Let's check the encoding on Disk
+
+
+        16 bytes, maximum density
+
+        |field| type(?) |value (last byte starts with 1)| actual|
+        |--|--|--|--|
+        |01|01|4368 72697374 6961EE|Christian|
+        |02|01|5568 EC|Uhl|
+
+        --
+
+        ### Kryo Summary
+
+        * no Schema
+
+        * therefore no Schema Evoultion
+
+        * Good for Message-Serialization for running instances
+
+        * you do not want to persist these serialized Values
     	
     </script>
 </section>
