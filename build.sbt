@@ -9,7 +9,7 @@ val shared = Seq(
 )
 
 lazy val protocolRoot = (project in file("."))
-  .aggregate(protobuf)
+  .aggregate(protobuf, avro)
   .settings(
     shared,
     name := "protocol-shootout"
@@ -25,6 +25,14 @@ lazy val protobuf = (project in file("protobuf"))
     name := "protocol-shootout-protobuf",
     description := "protobuf examples"
   )
+
+lazy val avro = (project in file("avro"))
+.settings(
+  shared,
+  avroSourceDirectory := file("avro/src/main/avro"),
+  sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
+  libraryDependencies += "com.sksamuel.avro4s" %% "avro4s-core" % "1.8.0"
+)
 
 def scalaXml = Def.setting {
   scalaBinaryVersion.value match {

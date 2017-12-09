@@ -268,15 +268,92 @@
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        ## Avro
+        ## Thrift
     	
     </script>
 </section>
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        ## Thrift
-    	
+        ## Avro
+
+        --
+
+        * started as a subproject of Hadoop, because Thrift was a bad fit for Hadoop
+
+        * now an Apache Project, supported by Confluent
+
+        * Kafka is a large Influencer nowadays
+
+        * has two schema languages, one for humans and one for machines
+
+        * direct mapping from and to JSON
+
+        --
+
+        differs from Protobuf and Thrift:
+
+        * Reader and Writer Schema can be different, Data brings its own schema
+
+        * less type information for the payload needed
+
+        * no manually assigned field ids
+
+
+        ### All boils down to having different schemas for reading and writing
+
+        --
+
+        ## Schema Sample
+
+        ```
+
+        record Person {
+            union {null, long} user_id = null;
+            string firstname;
+            string lastname;
+        }
+        ```
+
+        --
+
+        ### Usage with SBT
+
+        using avrohugger and avro4s
+
+        * [avro4s](https://github.com/sksamuel/avro4s)
+        * [avrohugger](https://github.com/julianpeeters/avrohugger)
+
+        (live Sample)
+
+        --
+
+        ### Let's check the encoding on Disk
+
+
+        first, 248 Bytes of schema
+
+        |lenght| sing |value |bytes | value |
+        |--|--|--|--|--|
+        |0001001|0|12|43687269 73746961 6E|Christian|
+        |0000011|0|06|55686C|Uhl|
+
+        --
+
+        ### So how do writer's and reader's schema go together?
+
+        * they need to be _compatible_, but not equal
+        * resulution rules are in the avro specification
+        * adding or removing only of fields with default values
+
+        --
+
+        ### How does Data and Schema find together?
+
+        1. You include it in the Payload (as in the Sample)
+        1. You versionize it, store it yourself and join it later (typical Database Application)
+        1. Roll your Schema Registry and do Avro RPC
+        
     </script>
 </section>
 

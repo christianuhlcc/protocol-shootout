@@ -10,3 +10,7 @@
 project/project
 project/target
 /target
+
+*.DS_Store
+*/target
+*/reveal.js.min
