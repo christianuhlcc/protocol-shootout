@@ -1,6 +1,7 @@
 import java.io.File
 
 import com.sksamuel.avro4s.{AvroInputStream, AvroOutputStream}
+import de.christianuhl.avro.Person
 import org.scalatest.{FlatSpec, Matchers}
 
 class AvroPersonSerializationTest extends FlatSpec with Matchers {

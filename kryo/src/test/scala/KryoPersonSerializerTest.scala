@@ -3,7 +3,7 @@ import java.nio.file.{Files, Paths}
 import com.twitter.chill.{Input, Output, ScalaKryoInstantiator}
 import org.scalatest.{FlatSpec, Matchers}
 
-class PersonSerializerKryoTest extends FlatSpec with Matchers {
+class KryoPersonSerializerTest extends FlatSpec with Matchers {
 
   "The kryo serialization " should
     "serialize and de-serialize our person " in {

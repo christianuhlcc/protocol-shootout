@@ -9,7 +9,7 @@ val shared = Seq(
 )
 
 lazy val protocolRoot = (project in file("."))
-  .aggregate(protobuf, avro, thrift)
+  .aggregate(protobuf, avro, thrift, kryo)
   .settings(
     shared,
     name := "protocol-shootout"
