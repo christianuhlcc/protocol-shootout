@@ -104,19 +104,20 @@
 
         ### Programming Language provided serialization
 
-        we get `java.io.Serializable` for free, so why not just use it?
+        we get `scala.Serializable` for free, so why not just use it?
 
         --
 
         ### NoooooooooOOoo
 
-        * We are bound to one implementation language 
+        * We are bound to one implementation language (but we're Java Compatible)
         * The performance is awful
-        * It has some serious drawbacks
+        * It has some serious drawbacks:
 
         --
 
         > Implement `Serializable` judiciously
+        
         [Joshua Bloch, Effective Java]
 
         * decreases the flexibility to change the class once it is released
@@ -136,7 +137,7 @@
         |avro-generic|329|1721|984|2704|221|
         |scala/java-built-in|514|8280|36105|44385|1293|
 
-        [Source](https://github.com/eishay/jvm-serializers/wiki)
+        [Source: jvm-serializers wiki](https://github.com/eishay/jvm-serializers/wiki)
 
         --
 
@@ -161,7 +162,7 @@
 
         ### But... how about JSON? Or XML?
 
-        There also exists a various range of schema extensions for JSON.
+        There also exists a various range of schema extensions for JSON, like BSON and JSON Schema.
         Unfortunately they don't provide schema evolvability, so I'll skip them
 
 
@@ -499,7 +500,30 @@
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
         ## Summary
-    	
+
+        --
+
+        ## Summary
+
+        |Framework  |Notes|
+        |--|--|
+        |Protobuf|nice integration, clear concepts,confusing 2->3 version change |
+        |Thrift|clear concepts,bigger framework, lacking integration| 
+        |Avro|good integration, good for big files,embedded schema concept| 
+        |kryo|speed, simplicity,no evolvability, not for persisting|  
+
+        --
+
+        ## Relevant Books
+
+        * [Effective Java](https://www.amazon.de/Effective-Java-Joshua-Bloch/dp/0134685997)
+        * [Desinging Data Intensive Applications](https://www.amazon.de/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321)
+
+        --
+
+        ## Questions?
+
+        My twitter is [@chrisuhl](https://twitter.com/chrisuhl)
     </script>
 </section>
 
