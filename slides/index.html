@@ -41,7 +41,7 @@
 
         --
 
-        ### System designs are changing
+        ## System designs are changing
 
         1. Microservice architectures are becoming mainstream
         1. Queues (and distributed commit logs used as queues) show up in mainstream architectures
@@ -57,33 +57,42 @@
 
         --
 
-        ## Evolvability
+        ### Evolvability
 
         > The ability of a system and its data to adopt to change
 
         --
 
-        ## Evolvability
+        ### Evolvability
 
-        In the world of monolithic systems and relational databases, a change in the data model was usually implemented by a schema migration (and code changes)
+        In monolithic systems with relational databases, a change in the data model was usually implemented by 
+
+        * a schema migration 
+        * code changes
+        * one big deployment
 
         --
 
-		## Evolvability Examples
+		#### Evolvability Examples
 
         * monolithic systems and relational databases
-        * replicated systems 
-        * systems with code distributed to the user
+        * replicated systems
+        * distributed systems in your Datacenter 
+        * systems with code distributed to the User
 
         --
 
-        ## Persistence
+        ### New Persistence Requirements
 
         * on-disk formats behave significantly different than in-memory formats
 
         * Data needs to be encoded/serialized/marshalled
 
         * to get it back you need to decode/deserialize/unmarshall
+
+        --
+
+        ### So how do can we deal with this?
 
     </script>
 </section>
