@@ -26,7 +26,7 @@
 			<div class="slides">
 
 
-<!-- horrible intendation for a reason, because I don't want to read everything nested to far. -->
+<!-- horrible indentation for a reason, because I don't want to read everything nested to far. -->
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
@@ -65,7 +65,7 @@
 
         ## Evolvability
 
-        In the world of monolythic systems and relational databases, a change in the data model was usually implemented by a schema migration (and code changes)
+        In the world of monolithic systems and relational databases, a change in the data model was usually implemented by a schema migration (and code changes)
 
         --
 
@@ -110,9 +110,9 @@
         > Implement `Serializable` judiciously
         [Joshua Bloch, Effective Java]
 
-        * decreases the flexibilty to change the class once it is released
+        * decreases the flexibility to change the class once it is released
         * The inner implementation of your class becomes the API
-        * increases the likelyhood of bugs and security holes (Stack Overflows)
+        * increases the likelihood of bugs and security holes (Stack Overflows)
         * increases the testing burden
 
         --
@@ -153,14 +153,14 @@
         ### But... how about JSON? Or XML?
 
         There also exists a various range of schema extensions for JSON.
-        Unfortunately they don't provide schema evolabiltiy, so i'll skip them
+        Unfortunately they don't provide schema evolvability, so I'll skip them
 
 
     </script>
 </section>
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        ## Schema evolvability
+        ## Schema Evolvability
 
         --
 
@@ -179,7 +179,7 @@
 
         --
 
-        ### Forwards compatibiltiy
+        ### Forwards compatibility
 
         Reading Data from a Schema that is newer that the Schema of the running Software.
 
@@ -187,7 +187,7 @@
 
         --
 
-        ### Forwards compatibiltiy
+        ### Forwards compatibility
 
         Let a Protocol handle this for us!
 
@@ -258,10 +258,10 @@
 
         ### Why the radical 'everything is optional'?   
 
-        * `required` breaks schema evolvabiltiy anywas
+        * `required` breaks schema evolvability anyways
         * loads of production issues
-        * was already banned in google anyways
-        * `optional` became rendundant and was removed as well
+        * was already banned in Google
+        * `optional` became redundant and was removed as well
 
     </script>
 </section>
@@ -283,7 +283,7 @@
         ### What is Thrift?
 
         * it has large conceptual similarities to protobuf
-        * originally developed at facebook
+        * originally developed at Facebook
         * re-open-sourced later as fbthrift
 
         --
@@ -316,7 +316,7 @@
 
          ### Let's check the encoding on Disk
 
-        |Type| Field Tag |Lenth |bytes | value |
+        |Type| Field Tag |Length |bytes | value |
         |--|--|--|--|--|
         |0B|0002|00000009|43687269 73746961 6E|Christian|
         |0B|0003|00000003|55686C|Uhl|
@@ -327,9 +327,9 @@
 
         * It's more than just serialization, it's a whole RPC framework
 
-        * It embraces a whole family of Encodings (They call it protocols)
+        * It embraces a whole family of encodings (They call it protocols)
 
-        * scala ecosystem only gets contributions by twitter
+        * Scala ecosystem only gets contributions by Twitter
 
         * otherwise, it's remarkably similar to protobuf
 
@@ -344,9 +344,9 @@
 
         * started as a subproject of Hadoop, because Thrift was a bad fit for Hadoop
 
-        * now an Apache Project, supported by Confluent
+        * now an Apache project, supported by Confluent
 
-        * Kafka is a large Influencer nowadays
+        * Kafka (Confluent) is a large influencer nowadays
 
         * has two schema languages, one for humans and one for machines
 
@@ -406,7 +406,7 @@
         ### So how do writer's and reader's schema go together?
 
         * they need to be _compatible_, but not equal
-        * resulution rules are in the avro specification
+        * resolution rules are in the Avro specification
         * adding or removing only of fields with default values
 
         --
@@ -421,8 +421,8 @@
 
         ### What benefits to we get from that?
 
-        1. Support for dynamically generated schemas (protobuf and thrift want to be hand-crafted)
-        1. Simpler interoperabilty with dynamically typed languages
+        1. Support for dynamically generated schemas (Protobuf and Thrift want to be hand-crafted)
+        1. Simpler interoperability with dynamically typed languages
 
         ### And the downsides
 
@@ -446,7 +446,7 @@
 
         * Blazing fast JVM-to-JVM communication
 
-        * good candidate for live cluster communication (akka e.g.) 
+        * good candidate for live cluster communication (Akka e.g.) 
 
         [Source](https://github.com/EsotericSoftware/kryo)
 
@@ -478,7 +478,7 @@
 
         * no Schema
 
-        * therefore no Schema Evoultion
+        * therefore no Schema Evolution
 
         * Good for Message-Serialization for running instances
 
