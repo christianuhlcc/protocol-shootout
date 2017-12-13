@@ -43,10 +43,10 @@
 
         ## System designs are changing
 
-        1. Microservice architectures are becoming mainstream
-        1. Queues (and distributed commit logs used as queues) show up in mainstream architectures
-        1. CQRS / ES is a common design nowadays, especially with the rising popularity of DDD
-        1. We're not using databases as integration layer anymore. (I hope?!...)
+        1. Microservice architectures are mainstream
+        1. Queues show up in mainstream architectures
+        1. CQRS / ES is a common design nowadays
+        1. We're not using databases as integration layer
 
         --
 
@@ -59,25 +59,26 @@
 
         ### Evolvability
 
-        > The ability of a system and its data to adopt to change
+        > The ability of a system and its data to adapt to change
+
+        _Me, for the lack of a better definition_
 
         --
 
         ### Evolvability
 
-        In monolithic systems with relational databases, a change in the data model was usually implemented by 
+        In monolithic systems with relational databases, a change in the data model was usually implemented by
 
-        * a schema migration 
+        * a schema migration
         * code changes
         * one big deployment
 
         --
 
-		#### Evolvability Examples
+		#### The Need For Evolvability Examples
 
-        * monolithic systems and relational databases
         * replicated systems
-        * distributed systems in your Datacenter 
+        * distributed systems in our datacenter
         * systems with code distributed to the User
 
         --
@@ -86,7 +87,7 @@
 
         * on-disk formats behave significantly different than in-memory formats
 
-        * Data needs to be encoded/serialized/marshalled
+        * data needs to be encoded/serialized/marshalled
 
         * to get it back you need to decode/deserialize/unmarshall
 
@@ -110,19 +111,19 @@
 
         ### NoooooooooOOoo
 
-        * We are bound to one implementation language (but we're Java Compatible)
+        * We are bound to one implementation language (but we're Java compatible)
         * The performance is awful
         * It has some serious drawbacks:
 
         --
 
         > Implement `Serializable` judiciously
-        
+
         [Joshua Bloch, Effective Java]
 
-        * decreases the flexibility to change the class once it is released
-        * The inner implementation of your class becomes the API
-        * increases the likelihood of bugs and security holes (Stack Overflows)
+        * decreases the flexibility to change once released
+        * the implementation of the class becomes the API
+        * increases the likelihood of bugs and security holes
         * increases the testing burden
 
         --
@@ -151,12 +152,12 @@
 
         ### But... how about JSON? Or XML?
 
-        * widespread
-        * somewhat human readable
-        * still slow (depending on the benchmark)
-        * verbose
-        * number handling is difficult
-        * character encoding is difficult
+        + widespread
+        + somewhat human readable
+        - still slow (depending on the benchmark)
+        - verbose
+        - number handling is difficult
+        - character encoding is difficult
 
         --
 
@@ -183,7 +184,7 @@
 
         ### Backwards compatibility
 
-        This means a newer Schema can read Data encoded with an older Schema.
+        This means a newer schema can read data encoded with an older schema.
 
         That's halfway (not) easy. You know how the previous schema was, you can deal with missing things in your code. If you are aware of that.
 
@@ -191,7 +192,7 @@
 
         ### Forwards compatibility
 
-        Reading Data from a Schema that is newer that the Schema of the running Software.
+        Reading data from a schema that is newer that the schema of the running software.
 
         Ouch. How do you deal with things you don't know about?
 
@@ -199,9 +200,9 @@
 
         ### Forwards compatibility
 
-        Let a Protocol handle this for us!
+        Let a protocol handle this for us!
 
-        
+
     </script>
 </section>
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
@@ -212,7 +213,7 @@
 
         What is Protbuf (protocol buffers)?
 
-        > Protocol buffers are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. 
+        > Protocol buffers are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler.
 
         Besides the specification, Google provides a compiler for Java
 
@@ -266,7 +267,7 @@
 
         --
 
-        ### Why the radical 'everything is optional'?   
+        ### Why the radical 'everything is optional'?
 
         * `required` breaks schema evolvability anyways
         * loads of production issues
@@ -284,7 +285,7 @@
 
         ### What is Thrift?
 
-        > ... is an interface definition language and binary communication protocol that is used to define and create services for numerous languages. It is used as a remote procedure call (RPC) framework 
+        > ... is an interface definition language and binary communication protocol that is used to define and create services for numerous languages. It is used as a remote procedure call (RPC) framework
 
         [wikipedia](https://en.wikipedia.org/wiki/Apache_Thrift)
 
@@ -366,7 +367,7 @@
 
         differs from Protobuf and Thrift:
 
-        * Reader and Writer Schema can be different, Data brings its own schema
+        * Reader and Writer Schema can be different, data brings its own schema
 
         * less type information for the payload needed
 
@@ -423,9 +424,9 @@
 
         ### How does Data and Schema find together?
 
-        1. You include it in the Payload (as in the Sample)
-        1. You versionize it, store it yourself and join it later (typical Database Application)
-        1. Roll your Schema Registry and do Avro RPC
+        1. You include it in the payload (as in the sample)
+        1. You versionize it, store it yourself and join it later (typical database application)
+        1. Roll your schema registry and do Avro RPC
 
         --
 
@@ -450,13 +451,13 @@
 
         ### The 'odd' one of our little list
 
-        * Object Graph serialization Framework for the JVM
+        * Object graph serialization framework for the JVM
 
-        * No Schema evolution
+        * No schema evolution
 
         * Blazing fast JVM-to-JVM communication
 
-        * good candidate for live cluster communication (Akka e.g.) 
+        * good candidate for live cluster communication (Akka e.g.)
 
         [Source](https://github.com/EsotericSoftware/kryo)
 
@@ -486,14 +487,14 @@
 
         ### Kryo Summary
 
-        * no Schema
+        * no schema
 
-        * therefore no Schema Evolution
+        * therefore no schema evolution
 
-        * Good for Message-Serialization for running instances
+        * Good for message serialization within running instances
 
-        * you do not want to persist these serialized Values
-    	
+        * you do not want to persist these serialized values
+
     </script>
 </section>
 
@@ -508,9 +509,9 @@
         |Framework  |Notes|
         |--|--|
         |Protobuf|nice integration, clear concepts,confusing 2->3 version change |
-        |Thrift|clear concepts,bigger framework, lacking integration| 
-        |Avro|good integration, good for big files,embedded schema concept| 
-        |kryo|speed, simplicity,no evolvability, not for persisting|  
+        |Thrift|clear concepts,bigger framework, lacking integration|
+        |Avro|good integration, good for big files,embedded schema concept|
+        |kryo|speed, simplicity,no evolvability, not for persisting|
 
         --
 
