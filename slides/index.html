@@ -75,15 +75,15 @@
 
         --
 
-		#### The Need For Evolvability Examples
+		#### The Need For Evolvability
 
         * replicated systems
         * distributed systems in our datacenter
-        * systems with code distributed to the User
+        * systems with code distributed to the user
 
         --
 
-        ### New Persistence Requirements
+        ### New Persistence Requirements (Examples)
 
         * on-disk formats behave significantly different than in-memory formats
 
@@ -367,7 +367,7 @@
 
         differs from Protobuf and Thrift:
 
-        * Reader and Writer Schema can be different, data brings its own schema
+        * Reader and writer schema can be different, data brings its own schema
 
         * less type information for the payload needed
 
@@ -381,12 +381,13 @@
         ## Schema Sample
 
         ```
-
+        @namespace("de.christianuhl.avro")
+        protocol avrosample {
         record Person {
             union {null, long} user_id = null;
             string firstname;
             string lastname;
-        }
+        }}
         ```
 
         --
@@ -411,6 +412,8 @@
         |--|--|--|--|--|
         |0001001|0|12|43687269 73746961 6E|Christian|
         |0000011|0|06|55686C|Uhl|
+
+        lastly 16 Byte i don't understand
 
         --
 
@@ -437,7 +440,7 @@
 
         ### And the downsides
 
-        1. Protocol Overhead or Runtime Dependency, pick a poison
+        1. Protocol overhead or runtime dependency, pick a poison
         1. Need to verify schema changes are compatible
 
     </script>
@@ -525,6 +528,10 @@
         ## Questions?
 
         My twitter is [@chrisuhl](https://twitter.com/chrisuhl)
+
+        Examples, slides and everything else:
+
+        https://github.com/christianuhlcc/protocol-shootout
     </script>
 </section>
 
