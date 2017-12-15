@@ -15,6 +15,9 @@ lazy val protocolRoot = (project in file("."))
     name := "protocol-shootout"
 )
 
+
+// Protobuf
+
 lazy val protobuf = (project in file("protobuf"))
   .settings(
     shared,
@@ -26,6 +29,8 @@ lazy val protobuf = (project in file("protobuf"))
     description := "protobuf examples"
   )
 
+// Avro
+
 lazy val avro = (project in file("avro"))
 .settings(
   shared,
@@ -34,11 +39,15 @@ lazy val avro = (project in file("avro"))
   libraryDependencies += "com.sksamuel.avro4s" %% "avro4s-core" % "1.8.0"
 )
 
+// Kryo
+
 lazy val kryo = (project in file("kryo"))
     .settings(
       shared,
       libraryDependencies += "com.twitter" %% "chill" % "0.9.2"
     )
+
+// Thrift
 
 lazy val thrift = (project in file("thrift"))
 .settings(
@@ -50,10 +59,3 @@ lazy val thrift = (project in file("thrift"))
   ),
   scroogeThriftSourceFolder := file("thrift/src/main/thrift")
 )
-
-def scalaXml = Def.setting {
-  scalaBinaryVersion.value match {
-    case "2.10" => Nil
-    case _      => ("org.scala-lang.modules" %% "scala-xml" % "1.0.6") :: Nil
-  }
-}

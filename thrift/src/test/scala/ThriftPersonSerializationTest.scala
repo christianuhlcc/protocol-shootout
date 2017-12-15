@@ -21,9 +21,9 @@ class ThriftPersonSerializationTest extends FlatSpec with Matchers {
     // Written to Disk and read again
     val buf = new TMemoryBuffer(32)
     val protcol = protocolFactory.getProtocol(buf)
-    Person.encode(originalPerson,protcol)
+    Person.encode(originalPerson, protcol)
 
-    Files.write(Paths.get(fileName),buf.getArray())
+    Files.write(Paths.get(fileName), buf.getArray())
 
     val byteArray = Files.readAllBytes(Paths.get(fileName))
     val inputBuf = new TMemoryInputTransport(byteArray)
