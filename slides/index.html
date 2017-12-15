@@ -79,6 +79,7 @@
 
         * replicated systems
         * distributed systems in our datacenter
+        * serverless, anyone?
         * systems with code distributed to the user
 
         --
@@ -125,6 +126,14 @@
         * the implementation of the class becomes the API
         * increases the likelihood of bugs and security holes
         * increases the testing burden
+
+        --
+
+        #### Places where default serialization has already bitten us:
+
+        * Akka remoting
+        * Akka cluster
+        * Spark
 
         --
 
@@ -287,7 +296,7 @@
 
         > ... is an interface definition language and binary communication protocol that is used to define and create services for numerous languages. It is used as a remote procedure call (RPC) framework
 
-        [wikipedia](https://en.wikipedia.org/wiki/Apache_Thrift)
+        [Wikipedia](https://en.wikipedia.org/wiki/Apache_Thrift)
 
         --
 
@@ -295,7 +304,7 @@
 
         * it has large conceptual similarities to protobuf
         * originally developed at Facebook
-        * re-open-sourced later as fbthrift
+        * re-open-sourced later again as fbthrift
 
         --
 
@@ -511,10 +520,10 @@
 
         |Framework  |Notes|
         |--|--|
-        |Protobuf|nice integration, clear concepts,confusing 2->3 version change |
-        |Thrift|clear concepts,bigger framework, lacking integration|
-        |Avro|good integration, good for big files,embedded schema concept|
-        |kryo|speed, simplicity,no evolvability, not for persisting|
+        |Protobuf|😀 integration, 😀 concepts, 😫 2>3 version change|
+        |Thrift|😀 concepts, 🤓 bigger framework, 😫 lacking integration|
+        |Avro|😀 integration, 😀 for big files, 🤭 embedded schema concept|
+        |kryo|😍 speed, 😍 simplicity, 😢 no evolvability, 😢 not for persisting|
 
         --
 
@@ -522,6 +531,12 @@
 
         * [Effective Java](https://www.amazon.de/Effective-Java-Joshua-Bloch/dp/0134685997)
         * [Desinging Data Intensive Applications](https://www.amazon.de/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321)
+
+        --
+
+        ### Honorary Mention
+
+        [RealLogics Simple Binary Encoding](https://github.com/real-logic/simple-binary-encoding)
 
         --
 
@@ -546,6 +561,7 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+                transition: 'none',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
