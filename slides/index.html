@@ -43,10 +43,15 @@
 
         ## System designs are changing
 
+
         1. Microservice architectures are mainstream
+        <!-- .element: class="fragment" -->
         1. Queues show up in mainstream architectures
+        <!-- .element: class="fragment" -->
         1. CQRS / ES is a common design nowadays
+        <!-- .element: class="fragment" -->
         1. We're not using databases as integration layer
+        <!-- .element: class="fragment" -->
 
         --
 
@@ -69,28 +74,28 @@
 
         In monolithic systems with relational databases, a change in the data model was usually implemented by
 
-        * a schema migration
-        * code changes
-        * one big deployment
+        * a schema migration <!-- .element: class="fragment" -->
+        * code changes <!-- .element: class="fragment" -->
+        * one big deployment <!-- .element: class="fragment" -->
 
         --
 
 		#### The Need For Evolvability
 
-        * replicated systems
-        * distributed systems in our datacenter
-        * serverless, anyone?
-        * systems with code distributed to the user
+        * replicated systems <!-- .element: class="fragment" -->
+        * distributed systems in our datacenter <!-- .element: class="fragment" -->
+        * serverless, anyone? <!-- .element: class="fragment" -->
+        * systems with code distributed to the user <!-- .element: class="fragment" -->
 
         --
 
         ### New Persistence Requirements (Examples)
 
-        * on-disk formats behave significantly different than in-memory formats
+        * on-disk formats behave significantly different than in-memory formats <!-- .element: class="fragment" -->
 
-        * data needs to be encoded/serialized/marshalled
+        * data needs to be encoded/serialized/marshalled <!-- .element: class="fragment" -->
 
-        * to get it back you need to decode/deserialize/unmarshall
+        * to get it back you need to decode/deserialize/unmarshall <!-- .element: class="fragment" -->
 
         --
 
@@ -111,7 +116,7 @@
         --
 
         No!
-        <!-- .slide: style="color:white" -->
+        <!-- .slide: style="color:white;font-size:5em" -->
         <!-- .slide: data-background-image="media/burning.jpg" -->
         <!-- .slide: data-background-position=center -->
         <!-- .slide: data-background-size=100%-->
@@ -130,18 +135,19 @@
 
         [Joshua Bloch, Effective Java]
 
-        * decreases the flexibility to change once released
-        * the implementation of the class becomes the API
-        * increases the likelihood of bugs and security holes
-        * increases the testing burden
+        * decreases the flexibility to change once released <!-- .element: class="fragment" -->
+        * the implementation of the class becomes the API <!-- .element: class="fragment" -->
+        * increases the likelihood of bugs and security holes <!-- .element: class="fragment" -->
+        * increases the testing burden <!-- .element: class="fragment" -->
 
         --
 
-        #### Places where default serialization has already bitten us:
+        #### Places where default serialization has already bitten me:
 
         * Akka remoting
         * Akka cluster
         * Spark
+        * User Sessions with Spring Boot
 
         --
 
@@ -524,6 +530,41 @@
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
+        ## Bonus Friend: Simple Binary Encoding
+
+        --
+
+        ### High Freqency optimized Serialization
+
+        > SBE is an OSI layer 6 presentation for encoding and decoding binary application messages for low-latency financial applications. This repository contains the reference implementations in Java, C++, Golang, and C#.
+
+        [Source](https://github.com/real-logic/simple-binary-encoding)
+
+        --
+
+        ### High Freqency optimized Serialization
+
+        * crazily fast
+
+        * from Real Logic
+
+        * integrates well with the Aeron messaging system
+
+        * supports schema evolution
+
+        --
+
+        ### Why is it not in this list?
+
+        * no Scala integration
+
+        * ease of use vs performance
+
+    </script>
+</section>
+
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
         ## Summary
 
         --
@@ -535,7 +576,7 @@
         |Protobuf|😀 integration, 😀 concepts, 😫 2>3 version change|
         |Thrift|😀 concepts, 🤓 bigger framework, 😫 lacking integration|
         |Avro|😀 integration, 😀 for big files, 🤭 embedded schema concept|
-        |kryo|😍 speed, 😍 simplicity, 😢 no evolvability, 😢 not for persisting|
+        |Kryo|😍 speed, 😍 simplicity, 😢 no evolvability, 😢 not for persisting|
 
         --
 
@@ -554,12 +595,6 @@
         * [Desinging Data Intensive Applications](https://www.amazon.de/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321)
         (Everything I said in this talk is explained here, too)
         * [Schema evolution in Avro, Protocol Buffers and Thrift](http://martin.kleppmann.com/2012/12/05/schema-evolution-in-avro-protocol-buffers-thrift.html)
-
-        --
-
-        ### Honorary Mention
-
-        [RealLogics Simple Binary Encoding](https://github.com/real-logic/simple-binary-encoding)
 
         --
 

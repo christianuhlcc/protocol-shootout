@@ -14,7 +14,7 @@ class ProtobufPersonSerializationTest extends FlatSpec with Matchers {
     val originalPerson = Person()
       .withFirstname("Christian")
       .withLastname("Uhl")
-      .withFavoriteConference("scalaExchange")
+      .withFavoriteConference("OOP2018")
 
     // when written to a file
     val file = new File(fileName)
@@ -30,7 +30,7 @@ class ProtobufPersonSerializationTest extends FlatSpec with Matchers {
 
     //then should still be the same thing
     readPerson.firstname shouldBe "Christian"
-    readPerson.favoriteConference shouldBe "scalaExchange"
+    readPerson.favoriteConference shouldBe "OOP2018"
     readPerson shouldEqual originalPerson
 
   }
