@@ -20,7 +20,7 @@ class ProtobufPersonSerializationTest extends FlatSpec with Matchers {
     val file = new File(fileName)
     val outputStream = new FileOutputStream(file)
     originalPerson.writeTo(outputStream)
-    outputStream.close
+    outputStream.close()
 
     // and reading again
     val input = new FileInputStream(file)
