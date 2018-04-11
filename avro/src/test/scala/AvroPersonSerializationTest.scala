@@ -24,7 +24,7 @@ class AvroPersonSerializationTest extends FlatSpec with Matchers {
     val is = AvroInputStream.data[Person](new File("person_avro.serialized"))
     val readPerson = is.iterator().toSet.head
     is.close()
-    //then should still be the same thing
+    //then should still be the same thing\
     readPerson.firstname shouldBe "Christian"
     readPerson shouldEqual originalPerson
 
