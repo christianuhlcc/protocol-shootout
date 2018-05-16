@@ -1,10 +1,9 @@
-import java.io.{File, FileInputStream, FileOutputStream}
+import java.nio.file.{Files, Paths}
 
+import de.christianuhl.proto.Person
 import org.apache.thrift.protocol.TBinaryProtocol
 import org.apache.thrift.transport.{TMemoryBuffer, TMemoryInputTransport}
 import org.scalatest.{FlatSpec, Matchers}
-import thrift.Person
-import java.nio.file.{Files, Paths}
 
 class ThriftPersonSerializationTest extends FlatSpec with Matchers {
 

@@ -38,11 +38,9 @@
         ## Reasoning
         so why is this even important?
 
-
         --
 
         ## System designs are changing
-
 
         1. Microservice architectures are mainstream
         <!-- .element: class="fragment" -->
@@ -97,11 +95,15 @@
 
         --
 
-        ### New Persistence Requirements (Examples)
+        #### The Need For Evolvability
 
-        * on-disk formats behave significantly different than in-memory formats <!-- .element: class="fragment" -->
+        All these systems need to exchange information pretty much all the time
 
-        * data needs to be encoded/serialized/marshalled <!-- .element: class="fragment" -->
+        --
+
+        ### why do we like to create new names so much?
+
+        * to go out, data needs to be encoded/serialized/marshalled <!-- .element: class="fragment" -->
 
         * to get it back you need to decode/deserialize/unmarshall <!-- .element: class="fragment" -->
 
@@ -133,9 +135,9 @@
 
         ### NoooooooooOOoo
 
-        * We are bound to one implementation language (but we're Java compatible)
-        * The performance is awful
-        * It has some serious drawbacks:
+        * We are bound to one implementation language (but we're Java compatible) <!-- .element: class="fragment" -->
+        * The performance is awful <!-- .element: class="fragment" -->
+        * It has some serious drawbacks <!-- .element: class="fragment" -->
 
         --
 
@@ -191,10 +193,10 @@
 
         + widespread
         + somewhat human readable
-        - still slow (depending on the benchmark)
-        - verbose
-        - number handling is difficult
-        - character encoding is difficult
+        - still slow (depending on the benchmark) <!-- .element: class="fragment" -->
+        - verbose <!-- .element: class="fragment" -->
+        - number handling is difficult <!-- .element: class="fragment" -->
+        - character encoding is difficult <!-- .element: class="fragment" -->
 
         --
 
