@@ -1,6 +1,19 @@
 # Serialization Protocols: a shootout
 The Protocol Shootout Talk with sample code and the slides
 
+## Abstract
+
+Decoupled applications exchange messages – between JVMs, over the network or via messaging systems like Kafka, Pub/Sub and Kinesis.
+Therefore messages are everywhere – sometimes they live for milliseconds, sometimes they get persisted for years.
+When the types of these messages start to evolve and the applications change at different speed,
+things get complicated: serialization protocols can help us with that!
+
+In this talk we will compare the current biggest players of the serialization world:
+Protocol Buffers (Protobuf), Avro, Thrift and Kryo. We will compare out their inner workings and different desing decisions.
+We’ll see how integration in the Scala and sbt ecosystem works, what schema evolution is and how we deal with it
+and only a brief bit about performance. Bonus points are awarded for portability to other platforms, maturity and community activity.
+Afterwards you’ll have a solid base to decide which serialization framework is the right one for you. Expect lots of code samples!
+
 ## videos 
 Recordings of the talk:
 https://www.youtube.com/watch?v=xrKbBmHCsho&index=17&list=PLLMLOC3WM2r6-113dYofBD3szljuVpESO
