@@ -1,0 +1,9 @@
+@namespace("de.christianuhl.avro")
+protocol avrosample
+{
+    record Person {
+        union {null, long} user_id = null;
+        string firstname;
+        string lastname;
+    }
+}

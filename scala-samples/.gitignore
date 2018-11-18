@@ -1,0 +1,16 @@
+*.class
+*.log
+
+*/node_modules
+
+.idea
+
+*.serialized // Test output
+
+project/project
+project/target
+/target
+
+*.DS_Store
+*/target
+*/reveal.js.min
