@@ -3,7 +3,7 @@ import scalapb._
 val shared = Seq(
   organization := "de.christianuhl",
   version      := "0.1.0",
-  scalaVersion := "2.12.6",
+  scalaVersion := "2.12.7",
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.0.5" % "test")
 )
@@ -36,7 +36,7 @@ lazy val avro = (project in file("avro"))
   shared,
   avroSourceDirectory := file("avro/src/main/avro"),
   sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue,
-  libraryDependencies += "com.sksamuel.avro4s" %% "avro4s-core" % "1.8.3"
+  libraryDependencies += "com.sksamuel.avro4s" %% "avro4s-core" % "2.0.2"
 )
 
 // Kryo
@@ -44,7 +44,7 @@ lazy val avro = (project in file("avro"))
 lazy val kryo = (project in file("kryo"))
     .settings(
       shared,
-      libraryDependencies += "com.twitter" %% "chill" % "0.9.2"
+      libraryDependencies += "com.twitter" %% "chill" % "0.9.3"
     )
 
 // Thrift
@@ -53,9 +53,9 @@ lazy val thrift = (project in file("thrift"))
 .settings(
   shared,
   libraryDependencies ++= Seq(
-    "org.apache.thrift" % "libthrift" % "0.9.3",
-    "com.twitter" %% "scrooge-core" % "17.12.0" exclude("com.twitter", "libthrift"),
-    "com.twitter" %% "finagle-thrift" % "17.11.0" exclude("com.twitter", "libthrift")
+    "org.apache.thrift" % "libthrift" % "0.11.0",
+    "com.twitter" %% "scrooge-core" % "18.11.0" exclude("com.twitter", "libthrift"),
+    "com.twitter" %% "finagle-thrift" % "18.11.0" exclude("com.twitter", "libthrift")
   ),
   scroogeThriftSourceFolder := file("thrift/src/main/thrift")
 )
