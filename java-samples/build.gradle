@@ -1,0 +1,67 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('com.google.protobuf:protobuf-gradle-plugin:0.8.7')
+	}
+}
+
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.google.protobuf'
+
+group = 'de.christianuhl'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.0.0"
+    }
+    plugins {
+        lite {
+            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                remove java
+            }
+            task.plugins {
+                lite { }
+            }
+        }
+    }
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir "${buildDir.absolutePath}/generated/source/proto/main/lite"
+        }
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter')
+    compile("org.springframework.boot:spring-boot-starter-web")
+	compile group: 'org.springframework', name: 'spring-web', version: '5.1.2.RELEASE'
+    compile 'com.google.protobuf:protobuf-java:3.0.0'
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
