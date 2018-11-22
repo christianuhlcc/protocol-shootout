@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package de.christianuhl.proto;
+
+message TrackingEvent {
+    string eventId = 1;
+    string date = 2;
+    string category = 3;
+}

@@ -1,5 +1,7 @@
 .gradle
 .idea
 build
-classes 
+classes
 out
+*.iml
+event*

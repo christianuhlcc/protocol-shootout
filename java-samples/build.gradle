@@ -60,8 +60,13 @@ repositories {
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter')
-    compile("org.springframework.boot:spring-boot-starter-web")
-	compile group: 'org.springframework', name: 'spring-web', version: '5.1.2.RELEASE'
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('org.postgresql:postgresql')
     compile 'com.google.protobuf:protobuf-java:3.0.0'
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    compileOnly('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
