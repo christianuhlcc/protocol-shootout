@@ -7,7 +7,7 @@
 		<title>Serialization Protocols</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -30,7 +30,7 @@
 
 <section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
     <script type="text/template">
-        # Serialization Protocols in Scala
+        # Serialization Protocols in distributed Systems
         a shootout
 
         ---
@@ -101,7 +101,7 @@
 
         --
 
-        ### why do we like to create new names so much?
+        ### Interrupt: why do we like to create new names so much?
 
         * to go out, data needs to be encoded/serialized/marshalled <!-- .element: class="fragment" -->
 
@@ -121,7 +121,7 @@
 
         ### Programming Language provided serialization
 
-        we get `scala.Serializable` for free, so why not just use it?
+        we get `Serializable` for free, so why not just use it?
 
         --
 
@@ -135,7 +135,7 @@
 
         ### NoooooooooOOoo
 
-        * We are bound to one implementation language (but we're Java compatible) <!-- .element: class="fragment" -->
+        * We are bound to JVM implementation languages (if you are really brave) <!-- .element: class="fragment" -->
         * The performance is awful <!-- .element: class="fragment" -->
         * It has some serious drawbacks <!-- .element: class="fragment" -->
 
@@ -241,6 +241,13 @@
 
         Let a protocol handle this for us!
 
+        We will compare 4 major Players:
+
+        * Protobuf <!-- .element: class="fragment" -->
+        * Thrift <!-- .element: class="fragment" -->
+        * Avro <!-- .element: class="fragment" -->
+        * Kryo <!-- .element: class="fragment" -->
+
 
     </script>
 </section>
@@ -260,21 +267,21 @@
 
         --
 
-        ### ScalaPB
-
-        ScalaPB is a protocol buffer compiler `(protoc)` plugin for Scala. It will generate Scala case classes, parsers and serializers for your protocol buffers
-
-        [Github](https://github.com/scalapb/ScalaPB)
-
-        --
-
         ### Protobuf Gradle Plugin
 
         Google provides a protocol buffer compiler `(protoc)` plugin for gradle. It will generate mighty Java Classes that can map and serialize Protobuf Classes
 
         ```
-            classpath('com.google.protobuf:protobuf-gradle-plugin:0.8.7')
+        classpath('com.google.protobuf:protobuf-gradle-plugin:0.8.7')
         ```
+
+        --
+
+        ### ScalaPB
+
+        ScalaPB is a protocol buffer compiler `(protoc)` plugin for Scala. It will generate Scala case classes, parsers and serializers for your protocol buffers
+
+        [Github](https://github.com/scalapb/ScalaPB)
 
         --
 
@@ -355,6 +362,15 @@
         * it has large conceptual similarities to protobuf
         * originally developed at Facebook
         * re-open-sourced later again as fbthrift
+
+        --
+
+        ## Java Integration
+
+        * Apache Thrift Stuff exists, but is midldy complicated
+        * Plugins who work pretty similar to what you've seen on protobuf
+
+        [Sample](https://github.com/bsideup/spring-boot-thrift)
 
         --
 
@@ -453,6 +469,31 @@
 
         --
 
+        ## Java Usage
+
+        ```
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>
+            <version>${confluent.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+        ```
+
+        [Sample](https://github.com/pjmeisch-cc/spring-boot-kafka-with-avro)
+
+        --
+
         ### Usage with SBT
 
         using avrohugger and avro4s
@@ -531,6 +572,25 @@
 
         --
 
+        ### Java Sample
+
+
+        ```
+        ...
+        import com.esotericsoftware.kryo.Kryo;
+        import com.esotericsoftware.kryo.io.Output;
+        // serializing
+        Kryo kryo = new Kryo();
+        AcmeMessage message = buildAcmeMessage(); // some domain object
+        Output out = new Output(response.getOutputStream())
+        kryo.writeObject(out, myObject);
+        // deserializing
+        Input in = new Input(request.getInputStream());
+        AcmeMessage message = kryo.readObject(in, AcmeMessage.class);
+        ```
+
+        --
+
         ### Usage with SBT
 
         using twitter chill
@@ -598,9 +658,11 @@
 
         ### Why is it not in this list?
 
-        * no Scala integration
+        * Integration not so simple
 
         * ease of use vs performance
+
+        * I cannot dissect the serialized bytes :)
 
     </script>
 </section>
@@ -648,7 +710,7 @@
 
         https://github.com/christianuhlcc/protocol-shootout
 
-        I started a german podcast _"uhl, steine, scherben"_ about becoming a head of engineering, it's on [itunes](https://itunes.apple.com/de/podcast/uhl-steine-scherben/id1323517247?l=en) and [on the internet](http://uhl-steine-scherben.org/)
+        I work for [Matmatch](matmatch.com) building a material search engine: We're cloud native and release 5 times a day to prod with a team of 5 - Ask me offline if you want to now more
 
         --
 

@@ -13,14 +13,15 @@ import java.util.Arrays;
 @SpringBootApplication
 public class ProtobufSampleApplication {
 
-	@Bean
-	RestTemplate restTemplate(ProtobufHttpMessageConverter hmc) {
-		return new RestTemplate(Arrays.asList(hmc));
-	}
 
 	@Bean
 	ProtobufHttpMessageConverter protobufHttpMessageConverter() {
 		return new ProtobufHttpMessageConverter();
+	}
+
+	@Bean
+	RestTemplate restTemplate(ProtobufHttpMessageConverter hmc) {
+		return new RestTemplate(Arrays.asList(hmc));
 	}
 
 	public static void main(String[] args) {

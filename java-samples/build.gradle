@@ -65,7 +65,9 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
     runtimeOnly('org.postgresql:postgresql')
-    compile 'com.google.protobuf:protobuf-java:3.0.0'
+    implementation 'com.google.protobuf:protobuf-java:3.0.0'
+    implementation 'com.google.protobuf:protobuf-java-util:3.0.0'
+    implementation 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4.0'
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     compileOnly('org.projectlombok:lombok')
     testImplementation('org.springframework.boot:spring-boot-starter-test')

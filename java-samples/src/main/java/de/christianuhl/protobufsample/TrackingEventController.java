@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 import static de.christianuhl.proto.TrackingEventOuterClass.TrackingEvent;
 
@@ -34,5 +35,16 @@ class TrackingEventController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
             @PageableDefault(sort = {"timestamp", "category"}) Pageable pageable) {
         return service.query(from, to, pageable);
+    }
+
+    @GetMapping("/demo")
+    public TrackingEvent demo() {
+        val event =  TrackingEvent
+                .newBuilder()
+                .setCategory("category2")
+                .setEventId("2")
+                .build();
+
+        return event;
     }
 }
