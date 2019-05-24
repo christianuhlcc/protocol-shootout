@@ -10,7 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 import static de.christianuhl.proto.TrackingEventOuterClass.TrackingEvent;
 
@@ -38,13 +38,14 @@ class TrackingEventController {
     }
 
     @GetMapping("/demo")
-    public TrackingEvent demo() {
+    public byte[] demo() {
         val event =  TrackingEvent
                 .newBuilder()
                 .setCategory("category2")
-                .setEventId("2")
+                .setEventId("3")
+                .setDate( LocalDateTime.now().toString())
                 .build();
 
-        return event;
+        return event.toByteArray();
     }
 }
